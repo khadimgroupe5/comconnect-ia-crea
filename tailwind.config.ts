@@ -18,19 +18,36 @@ export default {
 			}
 		},
 		extend: {
+			fontFamily: {
+				'heading': ['Montserrat', 'sans-serif'],
+				'body': ['Open Sans', 'sans-serif'],
+			},
 			colors: {
 				border: 'hsl(var(--border))',
+				'border-dark': 'hsl(var(--border-dark))',
 				input: 'hsl(var(--input))',
+				'input-dark': 'hsl(var(--input-dark))',
 				ring: 'hsl(var(--ring))',
 				background: 'hsl(var(--background))',
 				foreground: 'hsl(var(--foreground))',
+				
+				// ComConnect Brand Colors
+				'dark-bg': 'hsl(var(--dark-bg))',
+				'dark-section': 'hsl(var(--dark-section))',
+				'brand-blue': 'hsl(var(--brand-blue))',
+				'brand-blue-dark': 'hsl(var(--brand-blue-dark))',
+				'brand-blue-light': 'hsl(var(--brand-blue-light))',
+				
 				primary: {
 					DEFAULT: 'hsl(var(--primary))',
-					foreground: 'hsl(var(--primary-foreground))'
+					foreground: 'hsl(var(--primary-foreground))',
+					hover: 'hsl(var(--primary-hover))'
 				},
 				secondary: {
 					DEFAULT: 'hsl(var(--secondary))',
-					foreground: 'hsl(var(--secondary-foreground))'
+					foreground: 'hsl(var(--secondary-foreground))',
+					dark: 'hsl(var(--secondary-dark))',
+					'dark-foreground': 'hsl(var(--secondary-dark-foreground))'
 				},
 				destructive: {
 					DEFAULT: 'hsl(var(--destructive))',
@@ -38,7 +55,9 @@ export default {
 				},
 				muted: {
 					DEFAULT: 'hsl(var(--muted))',
-					foreground: 'hsl(var(--muted-foreground))'
+					foreground: 'hsl(var(--muted-foreground))',
+					dark: 'hsl(var(--muted-dark))',
+					'dark-foreground': 'hsl(var(--muted-dark-foreground))'
 				},
 				accent: {
 					DEFAULT: 'hsl(var(--accent))',
@@ -50,7 +69,9 @@ export default {
 				},
 				card: {
 					DEFAULT: 'hsl(var(--card))',
-					foreground: 'hsl(var(--card-foreground))'
+					foreground: 'hsl(var(--card-foreground))',
+					dark: 'hsl(var(--card-dark))',
+					'dark-foreground': 'hsl(var(--card-dark-foreground))'
 				},
 				sidebar: {
 					DEFAULT: 'hsl(var(--sidebar-background))',
@@ -67,6 +88,20 @@ export default {
 				lg: 'var(--radius)',
 				md: 'calc(var(--radius) - 2px)',
 				sm: 'calc(var(--radius) - 4px)'
+			},
+			backgroundImage: {
+				'gradient-hero': 'var(--gradient-hero)',
+				'gradient-blue': 'var(--gradient-blue)',
+				'gradient-section': 'var(--gradient-section)'
+			},
+			boxShadow: {
+				'elegant': 'var(--shadow-elegant)',
+				'blue': 'var(--shadow-blue)',
+				'card': 'var(--shadow-card)'
+			},
+			transitionTimingFunction: {
+				'smooth': 'var(--transition-smooth)',
+				'bounce': 'var(--transition-bounce)'
 			},
 			keyframes: {
 				'accordion-down': {

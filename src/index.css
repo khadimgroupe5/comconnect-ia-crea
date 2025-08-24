@@ -1,42 +1,69 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Open+Sans:wght@300;400;500;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+/* ComConnect Sénégal Design System */
 
 @layer base {
   :root {
+    /* ComConnect Brand Colors */
     --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
-
+    --foreground: 0 0% 11%;
+    
+    --dark-bg: 0 0% 11%;
+    --dark-section: 0 0% 7%;
+    --brand-blue: 221 100% 50%;
+    --brand-blue-dark: 221 100% 45%;
+    --brand-blue-light: 221 100% 55%;
+    
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card-foreground: 0 0% 11%;
+    --card-dark: 0 0% 11%;
+    --card-dark-foreground: 0 0% 100%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 221 100% 50%;
+    --primary-foreground: 0 0% 100%;
+    --primary-hover: 221 100% 45%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    --secondary: 0 0% 96%;
+    --secondary-foreground: 0 0% 11%;
+    --secondary-dark: 0 0% 15%;
+    --secondary-dark-foreground: 0 0% 100%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --muted: 0 0% 96%;
+    --muted-foreground: 0 0% 45%;
+    --muted-dark: 0 0% 15%;
+    --muted-dark-foreground: 0 0% 70%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 221 100% 50%;
+    --accent-foreground: 0 0% 100%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --border: 0 0% 90%;
+    --border-dark: 0 0% 20%;
+    --input: 0 0% 90%;
+    --input-dark: 0 0% 15%;
+    --ring: 221 100% 50%;
 
     --radius: 0.5rem;
+    
+    /* Custom gradients */
+    --gradient-hero: linear-gradient(135deg, hsl(var(--dark-bg)), hsl(var(--dark-section)));
+    --gradient-blue: linear-gradient(135deg, hsl(var(--brand-blue)), hsl(var(--brand-blue-light)));
+    --gradient-section: linear-gradient(180deg, hsl(var(--background)), hsl(var(--secondary)));
+    
+    /* Shadows */
+    --shadow-elegant: 0 10px 40px -10px hsl(var(--dark-bg) / 0.3);
+    --shadow-blue: 0 10px 30px -10px hsl(var(--brand-blue) / 0.4);
+    --shadow-card: 0 4px 20px -4px hsl(var(--dark-bg) / 0.1);
+    
+    /* Transitions */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 
     --sidebar-background: 0 0% 98%;
 
@@ -100,6 +127,78 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-body;
+    scroll-behavior: smooth;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading;
+  }
+}
+
+@layer components {
+  /* Hero variants */
+  .hero-section {
+    @apply bg-gradient-to-br from-dark-bg to-dark-section text-white;
+  }
+  
+  /* Card variants */
+  .service-card {
+    @apply bg-white rounded-xl shadow-card hover:shadow-blue transition-all duration-300 
+           hover:-translate-y-2 border border-border/50;
+  }
+  
+  .service-card-dark {
+    @apply bg-card-dark text-card-dark-foreground rounded-xl shadow-elegant 
+           hover:shadow-blue transition-all duration-300 hover:-translate-y-2 
+           border border-border-dark;
+  }
+  
+  /* Scroll to top button */
+  .scroll-to-top {
+    @apply fixed bottom-6 right-6 z-50 bg-brand-blue text-white rounded-full 
+           w-12 h-12 flex items-center justify-center shadow-blue 
+           hover:bg-brand-blue-dark transition-all duration-300 
+           hover:scale-110 cursor-pointer;
+  }
+  
+  /* Animations */
+  .fade-in-up {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInUp 0.6s forwards;
+  }
+  
+  .fade-in-left {
+    opacity: 0;
+    transform: translateX(-30px);
+    animation: fadeInLeft 0.6s forwards;
+  }
+  
+  .fade-in-right {
+    opacity: 0;
+    transform: translateX(30px);
+    animation: fadeInRight 0.6s forwards;
+  }
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInLeft {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeInRight {
+  to {
+    opacity: 1;
+    transform: translateX(0);
   }
 }
