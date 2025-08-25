@@ -92,9 +92,8 @@ const Home = () => {
                 </Button>
                 <Button
                   asChild
-                  variant="outline"
                   size="lg"
-                  className="border-2 border-white text-white hover:bg-white hover:text-dark-bg px-8 py-6 text-lg font-semibold rounded-xl transition-all duration-300"
+                  className="bg-gray-700 text-white hover:bg-gray-600 px-8 py-6 text-lg font-semibold rounded-xl transition-all duration-300 hover:scale-105"
                 >
                   <a href="https://khadim4k.com" target="_blank" rel="noopener noreferrer">
                     Voir le portfolio
@@ -228,9 +227,8 @@ const Home = () => {
               </Button>
               <Button
                 asChild
-                variant="outline"
                 size="lg"
-                className="border-2 border-white text-white hover:bg-white hover:text-dark-bg px-8 py-6 text-lg font-semibold rounded-xl transition-all duration-300"
+                className="bg-gray-700 text-white hover:bg-gray-600 px-8 py-6 text-lg font-semibold rounded-xl transition-all duration-300 hover:scale-105"
               >
                 <a href="tel:+221784066315">
                   Appeler +221 78 406 63 15

@@ -149,8 +149,10 @@
   }
   
   .service-card-dark {
-    @apply bg-card-dark text-card-dark-foreground rounded-xl shadow-elegant 
-           hover:shadow-blue transition-all duration-300 hover:-translate-y-2 
+    @apply fixed bottom-6 right-6 z-50 bg-dark-bg text-white rounded-full 
+           w-12 h-12 flex items-center justify-center shadow-elegant 
+           hover:bg-dark-section transition-all duration-300 
+           hover:scale-110 cursor-pointer; hover:-translate-y-2 
            border border-border-dark;
   }
   
