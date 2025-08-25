@@ -146,16 +146,18 @@ const About = () => {
                     <p className="text-muted-foreground">Design UX/UI, branding, communication digitale</p>
                   </div>
                 </div>
-                <Button
-                  asChild
-                  size="lg"
-                  className="bg-brand-blue hover:bg-brand-blue-dark text-white px-8 py-6 text-lg font-semibold rounded-xl shadow-blue hover:shadow-lg transition-all duration-300 hover:scale-105"
-                >
-                  <a href="https://khadim4k.com" target="_blank" rel="noopener noreferrer">
-                    Découvrir le portfolio complet
-                    <ExternalLink className="w-5 h-5 ml-2" />
-                  </a>
-                </Button>
+                <div className="flex justify-center">
+                  <Button
+                    asChild
+                    size="lg"
+                    className="bg-brand-blue hover:bg-brand-blue-dark text-white px-8 py-6 text-lg font-semibold rounded-xl shadow-blue hover:shadow-lg transition-all duration-300 hover:scale-105"
+                  >
+                    <a href="https://khadim4k.com" target="_blank" rel="noopener noreferrer">
+                      Découvrir le portfolio complet
+                      <ExternalLink className="w-5 h-5 ml-2" />
+                    </a>
+                  </Button>
+                </div>
               </div>
             </CardContent>
           </Card>

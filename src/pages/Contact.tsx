@@ -1,97 +1,47 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { useToast } from "@/hooks/use-toast";
 import { 
-  ExternalLink, 
-  Eye, 
-  Calendar,
-  ArrowLeft,
-  ArrowRight
+  Phone, 
+  MessageCircle, 
+  MapPin, 
+  Mail,
+  Clock,
+  Send
 } from "lucide-react";
-import brandingService from "@/assets/branding-service.jpg";
-import aiContentService from "@/assets/ai-content-service.jpg";
-import marketingService from "@/assets/marketing-service.jpg";
 
-const Portfolio = () => {
-  const [currentSlide, setCurrentSlide] = useState(0);
+const Contact = () => {
+  const { toast } = useToast();
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    message: ""
+  });
 
-  const projects = [
-    {
-      id: 1,
-      title: "Identité visuelle - Entreprise Tech",
-      category: "Branding",
-      description: "Création complète d'identité visuelle pour une startup technologique sénégalaise, incluant logo, charte graphique et supports de communication.",
-      image: brandingService,
-      tags: ["Logo", "Charte graphique", "Business cards"],
-      date: "Janvier 2025",
-      client: "TechStart Dakar"
-    },
-    {
-      id: 2,
-      title: "Campagne IA - Restaurant",
-      category: "IA & Community Management",
-      description: "Gestion complète des réseaux sociaux avec contenus générés par IA : photos de plats, vidéos promotionnelles et rédaction de posts.",
-      image: aiContentService,
-      tags: ["IA générative", "Social Media", "Vidéos"],
-      date: "Décembre 2024",
-      client: "Restaurant Le Baobab"
-    },
-    {
-      id: 3,
-      title: "Supports Marketing - Événement",
-      category: "Marketing",
-      description: "Conception de tous les supports marketing pour un événement majeur : flyers, affiches, banners digitaux et merchandising.",
-      image: marketingService,
-      tags: ["Flyers", "Affiches", "Banners"],
-      date: "Novembre 2024",
-      client: "Festival Teranga"
-    },
-    {
-      id: 4,
-      title: "Formation IA - Entreprise",
-      category: "Formation",
-      description: "Formation complète de 20 employés aux outils d'IA générative pour la création de contenus marketing et communication.",
-      image: aiContentService,
-      tags: ["Formation", "IA", "Team Building"],
-      date: "Octobre 2024",
-      client: "Corp Sénégal SA"
-    },
-    {
-      id: 5,
-      title: "Branding Complet - ONG",
-      category: "Branding",
-      description: "Refonte complète de l'identité visuelle d'une ONG locale, création de supports de sensibilisation et optimisation digitale.",
-      image: brandingService,
-      tags: ["Rebranding", "ONG", "Impact social"],
-      date: "Septembre 2024",
-      client: "Aide Solidaire"
-    },
-    {
-      id: 6,
-      title: "Contenus IA - E-commerce",
-      category: "IA & Community Management",
-      description: "Création automatisée de contenus produits, descriptions optimisées SEO et visuels marketing pour boutique en ligne.",
-      image: marketingService,
-      tags: ["E-commerce", "SEO", "Automatisation"],
-      date: "Août 2024",
-      client: "Boutique Digi"
-    }
-  ];
+  const whatsappNumber = "+221784066315";
+  const whatsappUrl = `https://wa.me/${whatsappNumber.replace(/\D/g, "")}?text=Bonjour,%20je%20souhaite%20demander%20un%20devis%20pour%20mes%20projets%20digitaux.`;
 
-  const categories = ["Tous", "Branding", "IA & Community Management", "Marketing", "Formation"];
-  const [activeCategory, setActiveCategory] = useState("Tous");
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    // Simulate form submission
+    toast({
+      title: "Message envoyé !",
+      description: "Nous vous répondrons dans les plus brefs délais.",
+    });
 
-  const filteredProjects = activeCategory === "Tous" 
-    ? projects 
-    : projects.filter(project => project.category === activeCategory);
-
-  const nextSlide = () => {
-    setCurrentSlide((prev) => (prev + 1) % filteredProjects.length);
+    // Reset form
+    setFormData({ name: "", email: "", message: "" });
   };
 
-  const prevSlide = () => {
-    setCurrentSlide((prev) => (prev - 1 + filteredProjects.length) % filteredProjects.length);
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    });
   };
 
   return (
@@ -101,204 +51,253 @@ const Portfolio = () => {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="fade-in-up">
             <h1 className="text-4xl md:text-6xl font-heading font-bold mb-6 leading-tight">
-              Notre <span className="text-brand-blue">Portfolio</span>
+              Nous <span className="text-brand-blue">Contacter</span>
             </h1>
             <p className="text-xl md:text-2xl text-gray-300 mb-8 leading-relaxed max-w-3xl mx-auto">
-              Découvrez nos réalisations créatives et les projets qui témoignent de notre expertise en design et IA générative.
+              Prêt à transformer vos idées en réalité ? Contactez-nous pour discuter de vos projets digitaux.
             </p>
           </div>
         </div>
       </section>
 
-      {/* Portfolio Slider */}
+      {/* Contact Section */}
       <section className="py-20 bg-gradient-section">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16 fade-in-up">
-            <h2 className="text-3xl md:text-5xl font-heading font-bold mb-6 text-dark-bg">
-              Projets en Vedette
-            </h2>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              Un aperçu de nos dernières réalisations créatives
-            </p>
-          </div>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+            {/* Contact Form */}
+            <div className="fade-in-left">
+              <Card className="service-card">
+                <CardContent className="p-8">
+                  <h2 className="text-2xl font-heading font-bold mb-6 text-dark-bg">
+                    Envoyez-nous un message
+                  </h2>
+                  <form onSubmit={handleSubmit} className="space-y-6">
+                    <div>
+                      <label htmlFor="name" className="block text-sm font-medium text-dark-bg mb-2">
+                        Nom complet
+                      </label>
+                      <Input
+                        id="name"
+                        name="name"
+                        type="text"
+                        required
+                        value={formData.name}
+                        onChange={handleInputChange}
+                        placeholder="Votre nom complet"
+                        className="border-brand-blue/20 focus:border-brand-blue"
+                      />
+                    </div>
+                    <div>
+                      <label htmlFor="email" className="block text-sm font-medium text-dark-bg mb-2">
+                        Adresse email
+                      </label>
+                      <Input
+                        id="email"
+                        name="email"
+                        type="email"
+                        required
+                        value={formData.email}
+                        onChange={handleInputChange}
+                        placeholder="votre@email.com"
+                        className="border-brand-blue/20 focus:border-brand-blue"
+                      />
+                    </div>
+                    <div>
+                      <label htmlFor="message" className="block text-sm font-medium text-dark-bg mb-2">
+                        Message
+                      </label>
+                      <Textarea
+                        id="message"
+                        name="message"
+                        required
+                        value={formData.message}
+                        onChange={handleInputChange}
+                        placeholder="Décrivez votre projet ou vos besoins..."
+                        rows={6}
+                        className="border-brand-blue/20 focus:border-brand-blue resize-none"
+                      />
+                    </div>
+                    <Button
+                      type="submit"
+                      size="lg"
+                      className="w-full bg-brand-blue hover:bg-brand-blue-dark text-white py-6 text-lg font-semibold rounded-xl shadow-blue hover:shadow-lg transition-all duration-300 hover:scale-[1.02]"
+                    >
+                      <Send className="w-5 h-5 mr-2" />
+                      Envoyer le message
+                    </Button>
+                  </form>
+                </CardContent>
+              </Card>
+            </div>
 
-          {/* Category Filter */}
-          <div className="flex flex-wrap justify-center gap-4 mb-12">
-            {categories.map((category) => (
-              <Button
-                key={category}
-                variant={activeCategory === category ? "default" : "outline"}
-                onClick={() => {
-                  setActiveCategory(category);
-                  setCurrentSlide(0);
-                }}
-                className={`${
-                  activeCategory === category
-                    ? "bg-brand-blue hover:bg-brand-blue-dark text-white"
-                    : "border-brand-blue text-brand-blue hover:bg-brand-blue hover:text-white"
-                }`}
-              >
-                {category}
-              </Button>
-            ))}
-          </div>
-
-          {/* Slider */}
-          <div className="relative">
-            <Card className="service-card overflow-hidden">
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-0">
-                <div className="relative h-64 lg:h-96">
-                  <img 
-                    src={filteredProjects[currentSlide]?.image} 
-                    alt={`Projet ${filteredProjects[currentSlide]?.title} - ComConnect Sénégal`}
-                    className="w-full h-full object-cover"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-r from-dark-bg/60 to-transparent"></div>
-                  <Badge className="absolute top-4 left-4 bg-brand-blue text-white">
-                    {filteredProjects[currentSlide]?.category}
-                  </Badge>
-                </div>
-                <CardContent className="p-8 lg:p-12 flex flex-col justify-center">
-                  <div className="flex items-center text-sm text-muted-foreground mb-4">
-                    <Calendar className="w-4 h-4 mr-2" />
-                    {filteredProjects[currentSlide]?.date}
-                  </div>
-                  <h3 className="text-2xl lg:text-3xl font-heading font-bold mb-4 text-dark-bg">
-                    {filteredProjects[currentSlide]?.title}
+            {/* Contact Info */}
+            <div className="fade-in-right space-y-8">
+              <Card className="service-card">
+                <CardContent className="p-8">
+                  <h3 className="text-xl font-heading font-semibold mb-6 text-dark-bg">
+                    Informations de contact
                   </h3>
-                  <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
-                    {filteredProjects[currentSlide]?.description}
+                  <div className="space-y-6">
+                    <div className="flex items-start space-x-4">
+                      <div className="bg-brand-blue/10 p-3 rounded-lg">
+                        <Phone className="w-6 h-6 text-brand-blue" />
+                      </div>
+                      <div>
+                        <h4 className="font-semibold text-dark-bg mb-1">Téléphone</h4>
+                        <a 
+                          href="tel:+221784066315" 
+                          className="text-muted-foreground hover:text-brand-blue transition-colors"
+                        >
+                          +221 78 406 63 15
+                        </a>
+                      </div>
+                    </div>
+
+                    <div className="flex items-start space-x-4">
+                      <div className="bg-brand-blue/10 p-3 rounded-lg">
+                        <MessageCircle className="w-6 h-6 text-brand-blue" />
+                      </div>
+                      <div>
+                        <h4 className="font-semibold text-dark-bg mb-1">WhatsApp</h4>
+                        <a 
+                          href={whatsappUrl} 
+                          target="_blank" 
+                          rel="noopener noreferrer"
+                          className="text-muted-foreground hover:text-brand-blue transition-colors"
+                        >
+                          Chat direct WhatsApp
+                        </a>
+                      </div>
+                    </div>
+
+                    <div className="flex items-start space-x-4">
+                      <div className="bg-brand-blue/10 p-3 rounded-lg">
+                        <Mail className="w-6 h-6 text-brand-blue" />
+                      </div>
+                      <div>
+                        <h4 className="font-semibold text-dark-bg mb-1">Email</h4>
+                        <a 
+                          href="mailto:contact@comconnect.sn" 
+                          className="text-muted-foreground hover:text-brand-blue transition-colors"
+                        >
+                          contact@comconnect.sn
+                        </a>
+                      </div>
+                    </div>
+
+                    <div className="flex items-start space-x-4">
+                      <div className="bg-brand-blue/10 p-3 rounded-lg">
+                        <MapPin className="w-6 h-6 text-brand-blue" />
+                      </div>
+                      <div>
+                        <h4 className="font-semibold text-dark-bg mb-1">Adresse</h4>
+                        <p className="text-muted-foreground">
+                          Dakar, Sénégal
+                        </p>
+                      </div>
+                    </div>
+
+                    <div className="flex items-start space-x-4">
+                      <div className="bg-brand-blue/10 p-3 rounded-lg">
+                        <Clock className="w-6 h-6 text-brand-blue" />
+                      </div>
+                      <div>
+                        <h4 className="font-semibold text-dark-bg mb-1">Horaires</h4>
+                        <p className="text-muted-foreground">
+                          Lun - Ven : 8h - 18h<br />
+                          Sam : 9h - 15h
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
+              {/* Quick Action */}
+              <Card className="service-card bg-brand-blue text-white">
+                <CardContent className="p-8 text-center">
+                  <MessageCircle className="w-12 h-12 mx-auto mb-4" />
+                  <h3 className="text-xl font-heading font-semibold mb-4">
+                    Besoin d'une réponse rapide ?
+                  </h3>
+                  <p className="mb-6">
+                    Contactez-nous directement sur WhatsApp pour une réponse immédiate !
                   </p>
-                  <div className="flex flex-wrap gap-2 mb-6">
-                    {filteredProjects[currentSlide]?.tags.map((tag, idx) => (
-                      <Badge key={idx} variant="secondary" className="bg-brand-blue/10 text-brand-blue">
-                        {tag}
-                      </Badge>
-                    ))}
-                  </div>
-                  <div className="text-sm text-muted-foreground mb-6">
-                    <strong>Client :</strong> {filteredProjects[currentSlide]?.client}
-                  </div>
                   <Button
                     asChild
-                    className="bg-brand-blue hover:bg-brand-blue-dark text-white w-fit"
+                    variant="secondary"
+                    size="lg"
+                    className="bg-white text-brand-blue hover:bg-gray-100 w-full py-6 text-lg font-semibold rounded-xl transition-all duration-300 hover:scale-[1.02]"
                   >
-                    <a href="https://khadim4k.com" target="_blank" rel="noopener noreferrer">
-                      Voir plus de projets
-                      <ExternalLink className="w-4 h-4 ml-2" />
+                    <a href={whatsappUrl} target="_blank" rel="noopener noreferrer">
+                      Ouvrir WhatsApp
                     </a>
                   </Button>
                 </CardContent>
-              </div>
-            </Card>
-
-            {/* Navigation Arrows */}
-            <button
-              onClick={prevSlide}
-              className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white/90 hover:bg-white rounded-full p-3 shadow-lg transition-all duration-300 hover:scale-110"
-            >
-              <ArrowLeft className="w-6 h-6 text-dark-bg" />
-            </button>
-            <button
-              onClick={nextSlide}
-              className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white/90 hover:bg-white rounded-full p-3 shadow-lg transition-all duration-300 hover:scale-110"
-            >
-              <ArrowRight className="w-6 h-6 text-dark-bg" />
-            </button>
-
-            {/* Slide Indicators */}
-            <div className="flex justify-center mt-8 space-x-2">
-              {filteredProjects.map((_, index) => (
-                <button
-                  key={index}
-                  onClick={() => setCurrentSlide(index)}
-                  className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                    index === currentSlide ? 'bg-brand-blue scale-125' : 'bg-gray-300 hover:bg-gray-400'
-                  }`}
-                />
-              ))}
+              </Card>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Projects Grid */}
+      {/* Map Section */}
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16 fade-in-up">
             <h2 className="text-3xl md:text-5xl font-heading font-bold mb-6 text-dark-bg">
-              Galerie de Projets
+              Notre Localisation
             </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              Explorez notre portfolio complet de réalisations créatives
+              Nous sommes basés à Dakar, au cœur du dynamisme économique sénégalais
             </p>
           </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {filteredProjects.map((project, index) => (
-              <Card key={project.id} className="service-card group overflow-hidden">
-                <div className="relative h-48 overflow-hidden">
-                  <img 
-                    src={project.image} 
-                    alt={`Projet ${project.title} - ComConnect Sénégal`}
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-dark-bg/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                  <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <Eye className="w-8 h-8 text-white" />
-                  </div>
-                  <Badge className="absolute top-4 left-4 bg-brand-blue text-white">
-                    {project.category}
-                  </Badge>
-                </div>
-                <CardContent className="p-6">
-                  <div className="flex items-center text-sm text-muted-foreground mb-2">
-                    <Calendar className="w-4 h-4 mr-2" />
-                    {project.date}
-                  </div>
-                  <h3 className="text-lg font-heading font-semibold mb-3 text-dark-bg">
-                    {project.title}
-                  </h3>
-                  <p className="text-muted-foreground text-sm leading-relaxed mb-4">
-                    {project.description.substring(0, 100)}...
-                  </p>
-                  <div className="flex flex-wrap gap-1 mb-4">
-                    {project.tags.slice(0, 2).map((tag, idx) => (
-                      <Badge key={idx} variant="secondary" className="text-xs bg-brand-blue/10 text-brand-blue">
-                        {tag}
-                      </Badge>
-                    ))}
-                  </div>
-                  <div className="text-xs text-muted-foreground">
-                    <strong>Client :</strong> {project.client}
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
+          
+          <div className="rounded-2xl overflow-hidden shadow-card">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15433.899516875147!2d-17.4648555!3d14.7167249!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xec1731a55bb21db%3A0x90c43e9b7f5b9e8f!2sDakar%2C%20S%C3%A9n%C3%A9gal!5e0!3m2!1sfr!2sfr!4v1642517564895!5m2!1sfr!2sfr"
+              width="100%"
+              height="400"
+              className="border-0"
+              allowFullScreen
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              title="Localisation ComConnect Sénégal - Dakar"
+            />
           </div>
         </div>
       </section>
 
-      {/* Developer Section */}
+      {/* CTA Section */}
       <section className="py-20 hero-section">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="fade-in-up">
             <h2 className="text-3xl md:text-5xl font-heading font-bold mb-6 text-white">
-              Développé par Khadim Gueye
+              Commençons votre projet dès aujourd'hui
             </h2>
             <p className="text-xl text-gray-300 mb-8 leading-relaxed">
-              Full Stack Developer passionné par l'innovation, spécialisé dans les technologies modernes et l'IA générative.
+              Nous répondons à tous les messages dans les 2 heures. Votre succès digital commence maintenant !
             </p>
-            <Button
-              asChild
-              size="lg"
-              className="bg-brand-blue hover:bg-brand-blue-dark text-white px-8 py-6 text-lg font-semibold rounded-xl shadow-blue hover:shadow-lg transition-all duration-300 hover:scale-105"
-            >
-              <a href="https://khadim4k.com" target="_blank" rel="noopener noreferrer">
-                Découvrir le portfolio complet
-                <ExternalLink className="w-5 h-5 ml-2" />
-              </a>
-            </Button>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Button
+                asChild
+                size="lg"
+                className="bg-brand-blue hover:bg-brand-blue-dark text-white px-8 py-6 text-lg font-semibold rounded-xl shadow-blue hover:shadow-lg transition-all duration-300 hover:scale-105"
+              >
+                <a href={whatsappUrl} target="_blank" rel="noopener noreferrer">
+                  WhatsApp : Devis immédiat
+                </a>
+              </Button>
+              <Button
+                asChild
+                variant="outline"
+                size="lg"
+                className="bg-gray-700 text-white hover:bg-gray-600 px-8 py-6 text-lg font-semibold rounded-xl transition-all duration-300 hover:scale-105"
+              >
+                <a href="tel:+221784066315">
+                  Appeler maintenant
+                </a>
+              </Button>
+            </div>
           </div>
         </div>
       </section>
@@ -306,4 +305,4 @@ const Portfolio = () => {
   );
 };
 
-export default Portfolio;
+export default Contact;
